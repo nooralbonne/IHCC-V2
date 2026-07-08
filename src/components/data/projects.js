@@ -18,10 +18,6 @@ import CivilDefence2 from "../../assets/images/projects/4.CivilDefenceDirectorat
 import CivilDefence3 from "../../assets/images/projects/4.CivilDefenceDirectorateProject/CivilDefence3.jpeg";
 import CivilDefence4 from "../../assets/images/projects/4.CivilDefenceDirectorateProject/CivilDefence4.jpeg";
 
-import alrisha1 from "../../assets/images/projects/5.Al-RishaPowerStation/img101.jpg";
-import alrisha2 from "../../assets/images/projects/5.Al-RishaPowerStation/img103.jpg";
-import alrisha3 from "../../assets/images/projects/5.Al-RishaPowerStation/img569.jpg";
-import alrisha4 from "../../assets/images/projects/5.Al-RishaPowerStation/alrisha1.jpeg";
 import alrisha5 from "../../assets/images/projects/5.Al-RishaPowerStation/alrisha2.jpeg";
 import alrisha6 from "../../assets/images/projects/5.Al-RishaPowerStation/alrisha3.jpeg";
 import alrisha7 from "../../assets/images/projects/5.Al-RishaPowerStation/alrisha4.jpeg";
@@ -40,9 +36,6 @@ import AlMarjSchool4 from "../../assets/images/projects/7.Al-MarjHousingMixedPri
 
 import TechnologicalEngineering1 from "../../assets/images/projects/8.FacultyofTechnologicalEngineering/TechnologicalEngineering1.jpeg";
 import TechnologicalEngineering2 from "../../assets/images/projects/8.FacultyofTechnologicalEngineering/TechnologicalEngineering2.jpeg";
-import TechnologicalEngineering3 from "../../assets/images/projects/8.FacultyofTechnologicalEngineering/TechnologicalEngineering3.jpeg";
-import TechnologicalEngineering4 from "../../assets/images/projects/8.FacultyofTechnologicalEngineering/TechnologicalEngineering4.jpeg";
-import TechnologicalEngineering5 from "../../assets/images/projects/8.FacultyofTechnologicalEngineering/TechnologicalEngineering5.jpeg";
 import TechnologicalEngineering6 from "../../assets/images/projects/8.FacultyofTechnologicalEngineering/TechnologicalEngineering6.jpeg";
 
 import royalJordanianAirForce1 from "../../assets/images/projects/9.RoyalAirForceCommand/RoyalAirForce1.jpeg";

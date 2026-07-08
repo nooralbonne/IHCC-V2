@@ -97,15 +97,17 @@ export default function Projects() {
     const next = (index + visibleProjects.length) % visibleProjects.length;
     setActiveIndex(next);
   };
-  const goNext = () => goTo(activeIndex + 1);
-  const goPrev = () => goTo(activeIndex - 1);
+  const goNext = () => setActiveIndex((current) => (current + 1) % visibleProjects.length);
+  const goPrev = () => setActiveIndex((current) => (current - 1 + visibleProjects.length) % visibleProjects.length);
 
   // Auto-rotate the mobile carousel, pausing while the section is offscreen
   useEffect(() => {
     if (!showMobileCarousel || !isVisible) return undefined;
-    const timer = setInterval(goNext, AUTO_ROTATE_MS);
+    const timer = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % visibleProjects.length);
+    }, AUTO_ROTATE_MS);
     return () => clearInterval(timer);
-  }, [showMobileCarousel, isVisible, activeIndex]);
+  }, [showMobileCarousel, isVisible, visibleProjects.length]);
 
   const onTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;

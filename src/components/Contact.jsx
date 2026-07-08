@@ -121,19 +121,19 @@ export default function Contact() {
             ))}
 
             <div className="contact__social">
-              <a href="#" className="contact__social-link" aria-label="Facebook">
+              <a href="/Facebook" className="contact__social-link" aria-label="Facebook">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                   <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.8V3.6c-.28-.04-1.25-.12-2.38-.12-2.36 0-3.97 1.44-3.97 4.08V9.9H7.7V13h2.75v8h3.05Z" />
                 </svg>
               </a>
-              <a href="#" className="contact__social-link" aria-label="Instagram">
+              <a href="/instagram" className="contact__social-link" aria-label="Instagram">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="3" y="3" width="18" height="18" rx="5" />
                   <circle cx="12" cy="12" r="3.6" />
                   <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none" />
                 </svg>
               </a>
-              <a href="#" className="contact__social-link" aria-label="LinkedIn">
+              <a href="/linkedin" className="contact__social-link" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" fill="currentColor">
                   <path d="M6.94 8.5H3.56V21h3.38V8.5ZM5.25 3a1.97 1.97 0 1 0 0 3.94A1.97 1.97 0 0 0 5.25 3ZM20.44 21h-3.37v-6.36c0-1.52-.03-3.47-2.11-3.47-2.12 0-2.44 1.65-2.44 3.36V21H9.15V8.5h3.24v1.7h.05c.45-.86 1.56-1.77 3.22-1.77 3.44 0 4.08 2.27 4.08 5.22V21Z" />
                 </svg>

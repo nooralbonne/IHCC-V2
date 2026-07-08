@@ -37,14 +37,16 @@ export default function Header() {
     setActiveIndex(next);
   };
 
-  const goNext = () => goTo(activeIndex + 1);
-  const goPrev = () => goTo(activeIndex - 1);
+  const goNext = () => setActiveIndex((current) => (current + 1) % SLIDES.length);
+  const goPrev = () => setActiveIndex((current) => (current - 1 + SLIDES.length) % SLIDES.length);
 
   useEffect(() => {
     if (SLIDES.length <= 1) return undefined;
-    timerRef.current = setInterval(goNext, AUTO_ROTATE_MS);
+    timerRef.current = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % SLIDES.length);
+    }, AUTO_ROTATE_MS);
     return () => clearInterval(timerRef.current);
-  }, [activeIndex]);
+  }, []);
 
   return (
     <section className="hero" id="home">

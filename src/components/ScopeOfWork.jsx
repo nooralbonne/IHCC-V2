@@ -129,15 +129,17 @@ export default function ScopeOfWork({ mobileCarousel = true }) {
     const next = (index + SERVICES.length) % SERVICES.length;
     setActiveIndex(next);
   };
-  const goNext = () => goTo(activeIndex + 1);
-  const goPrev = () => goTo(activeIndex - 1);
+  const goNext = () => setActiveIndex((current) => (current + 1) % SERVICES.length);
+  const goPrev = () => setActiveIndex((current) => (current - 1 + SERVICES.length) % SERVICES.length);
 
   // Auto-rotate the mobile carousel, pausing while the section is offscreen
   useEffect(() => {
     if (!isMobile || !isVisible) return undefined;
-    const timer = setInterval(goNext, AUTO_ROTATE_MS);
+    const timer = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % SERVICES.length);
+    }, AUTO_ROTATE_MS);
     return () => clearInterval(timer);
-  }, [isMobile, isVisible, activeIndex]);
+  }, [isMobile, isVisible]);
 
   const onTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
