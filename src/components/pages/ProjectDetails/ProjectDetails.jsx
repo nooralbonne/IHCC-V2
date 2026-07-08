@@ -104,7 +104,7 @@ export default function ProjectDetails({ project: propProject }) {
             <img
               key={src}
               src={src}
-              alt={`${project.title} — photo ${index + 1}`}
+              alt={`${project.title} — slide ${index + 1}`}
               className={`project-details__slide ${
                 index === activeImage ? "project-details__slide--active" : ""
               }`}
