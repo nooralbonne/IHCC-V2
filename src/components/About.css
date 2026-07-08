@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
+
+.about {
+  position: relative;
+  background: var(--color-white, #f7f5f0);
+  padding: 30px 0 120px;
+  overflow: hidden;
+}
+
+/* --- Diagonal seam continuing the Header's signature cut --- */
+.about__seam {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: block;
+  pointer-events: none;
+}
+
+.about__seam-fill {
+  fill: var(--color-white, #f7f5f0);
+}
+
+.about__seam-line {
+  stroke: rgba(1, 123, 253, 0.25);
+  stroke-width: 1.5;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 72px;
+  align-items: center;
+  padding-top: 70px;
+}
+
+/* --- Scroll-reveal animation --- */
+.about__content,
+.about__media {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.about--visible .about__content,
+.about--visible .about__media {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about__stat,
+.about__badge {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms ease, transform 650ms ease;
+  transition-delay: calc(var(--i, 0) * 140ms);
+}
+
+.about--visible .about__stat,
+.about--visible .about__badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about--visible .about__media {
+  transition-delay: 160ms;
+}
+
+/* --- Text column --- */
+.about__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--luxury-blue, rgb(1, 123, 253));
+  margin: 0 0 18px;
+}
+
+.about__eyebrow::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+
+.about__title {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.1;
+  letter-spacing: 0.2px;
+  color: var(--color-dark, #0a1826);
+  margin: 0 0 24px;
+}
+
+.about__title span:first-child {
+  color: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.about__text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: rgba(10, 24, 38, 0.68);
+  max-width: 520px;
+  margin: 0 0 40px;
+}
+
+.about__stat {
+  padding-top: 22px;
+  border-top: 1px solid rgba(10, 24, 38, 0.12);
+  margin-bottom: 32px;
+}
+
+.about__stat-number {
+  display: block;
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 3.4vw, 42px);
+  color: var(--color-dark, #0a1826);
+  margin-bottom: 12px;
+}
+
+.about__stat-text {
+  font-family: "Inter", sans-serif;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: rgba(10, 24, 38, 0.62);
+  max-width: 480px;
+  margin: 0;
+}
+
+.about__badge {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  border: 1.5px solid var(--luxury-blue, rgb(1, 123, 253));
+  border-radius: 2px;
+  padding: 22px 24px;
+  max-width: 520px;
+}
+
+.about__badge-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: var(--luxury-blue, rgb(1, 123, 253));
+  color: var(--color-white, #f7f5f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__badge-title {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 15.5px;
+  color: var(--color-dark, #0a1826);
+  margin: 4px 0 8px;
+}
+
+.about__badge-text {
+  font-family: "Inter", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: rgba(10, 24, 38, 0.62);
+  margin: 0;
+}
+
+.about__cta {
+  margin-top: 34px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms ease, transform 650ms ease;
+  transition-delay: calc(var(--i, 0) * 140ms);
+}
+
+.about--visible .about__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about__cta .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-dark, #0a1826);
+  border-color: rgba(10, 24, 38, 0.2);
+}
+
+.about__cta .btn:hover {
+  border-color: var(--luxury-blue, rgb(1, 123, 253));
+  color: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.about__cta .btn svg {
+  transition: transform 220ms ease;
+}
+
+.about__cta .btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* --- Media column --- */
+.about__media {
+  position: relative;
+}
+
+.about__image {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  display: block;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 88%);
+}
+
+/* Diagonal flag accent, echoing the arrow motif in the printed profile */
+.about__media-flag {
+  position: absolute;
+  left: -18px;
+  bottom: 40px;
+  width: 90px;
+  height: 46px;
+  background: var(--luxury-blue, rgb(1, 123, 253));
+  clip-path: polygon(0 50%, 60% 0, 100% 0, 40% 100%, 0 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__content,
+  .about__media,
+  .about__stat,
+  .about__badge,
+  .about__cta {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about__image {
+    height: 380px;
+  }
+}
+
+/* --- Compact mobile layout: image first (short), tighter type, less
+   vertical space overall so About doesn't dominate the phone scroll --- */
+@media (max-width: 640px) {
+  .about {
+    padding: 40px 0 56px;
+  }
+
+  .about__grid {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 24px;
+    padding-top: 32px;
+  }
+
+  .about__image {
+    height: 200px;
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 32px 0 48px;
+  }
+
+  .about__badge {
+    flex-direction: row;
+  }
+}

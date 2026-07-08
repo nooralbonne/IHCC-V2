@@ -1,0 +1,98 @@
+.ihcc-topbar {
+  background: linear-gradient(180deg, #0c1c2c 0%, #0a1826 100%);
+  direction: ltr;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+.ihcc-topbar__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 9px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.ihcc-topbar__contact {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.ihcc-topbar__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(247, 245, 240, 0.72);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  padding: 0 22px;
+  position: relative;
+  transition: color 220ms ease;
+}
+
+.ihcc-topbar__contact .ihcc-topbar__item:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 12px;
+  background: rgba(201, 162, 39, 0.3);
+}
+
+a.ihcc-topbar__item:hover {
+  color: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.ihcc-topbar__item svg {
+  flex-shrink: 0;
+  opacity: 0.85;
+  color: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.ihcc-topbar__social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ihcc-topbar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: rgba(247, 245, 240, 0.72);
+  background: transparent;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  transition: background 220ms ease, color 220ms ease, transform 220ms ease, border-color 220ms ease;
+}
+
+.ihcc-topbar__icon:hover {
+  background: var(--luxury-blue, rgb(1, 123, 253));
+  color: #0a1826;
+  border-color: var(--luxury-blue, rgb(1, 123, 253));
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .ihcc-topbar__item:not(.ihcc-topbar__item--location) {
+    display: none;
+  }
+
+  .ihcc-topbar__contact .ihcc-topbar__item--location::before {
+    display: none;
+  }
+
+  .ihcc-topbar__inner {
+
+  padding: 9px 7px;
+  
+}
+}

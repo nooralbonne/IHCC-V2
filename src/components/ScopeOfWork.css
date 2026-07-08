@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
+
+.scope {
+  position: relative;
+  direction: ltr;
+  background: var(--color-white, #f7f5f0);
+  padding: 120px 0 110px;
+  overflow: hidden;
+}
+
+/* Quiet diagonal wash, mirrored from Projects__accent for rhythm across
+   the page (this one sits bottom-left instead of top-right) */
+.scope__accent {
+  position: absolute;
+  bottom: -180px;
+  left: -160px;
+  width: 480px;
+  height: 480px;
+  background: linear-gradient(
+    135deg,
+    rgba(1, 123, 253, 0.07),
+    rgba(10, 24, 38, 0.02)
+  );
+  transform: rotate(-18deg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.scope__container {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Header --- */
+.scope__header {
+  max-width: 680px;
+  margin: 0 0 64px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.scope--visible .scope__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scope__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--luxury-blue, rgb(1, 123, 253));
+  margin: 0 0 18px;
+}
+
+.scope__eyebrow::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.scope__title {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.12;
+  letter-spacing: 0.2px;
+  color: var(--color-dark, #0a1826);
+  margin: 0 0 20px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.scope__title span:first-child {
+  color: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.scope__intro {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.85;
+  color: rgba(10, 24, 38, 0.68);
+  margin: 0;
+  max-width: 560px;
+}
+
+/* --- Grid --- */
+.scope__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* --- Card --- */
+.scope-card {
+  position: relative;
+  background: var(--color-white, #fff);
+  border: 1px solid rgba(10, 24, 38, 0.08);
+  border-radius: 2px;
+  padding: 40px 30px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms ease, transform 700ms ease,
+    box-shadow 260ms ease, border-color 260ms ease;
+  transition-delay: calc(var(--i, 0) * 100ms);
+  overflow: hidden;
+}
+
+.scope--visible .scope-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scope-card:hover {
+  box-shadow: 0 20px 44px rgba(10, 24, 38, 0.12);
+  border-color: rgba(1, 123, 253, 0.3);
+}
+
+/* diagonal-cut corner, the same small echo used on project-card__media */
+.scope-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34px;
+  height: 34px;
+  background: var(--luxury-blue, rgb(1, 123, 253));
+  opacity: 0;
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+  transition: opacity 260ms ease;
+}
+
+.scope-card:hover::after {
+  opacity: 1;
+}
+
+.scope-card__number {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: rgba(10, 24, 38, 0.3);
+}
+
+.scope-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 4px;
+  background: rgba(1, 123, 253, 0.08);
+  color: var(--luxury-blue, rgb(1, 123, 253));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 260ms ease, color 260ms ease, transform 260ms ease;
+}
+
+.scope-card:hover .scope-card__icon {
+  background: var(--luxury-blue, rgb(1, 123, 253));
+  color: var(--color-white, #fff);
+  transform: translateY(-2px);
+}
+
+.scope-card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.scope-card__title {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 17.5px;
+  line-height: 1.4;
+  color: var(--color-dark, #0a1826);
+  margin: 0;
+}
+
+.scope-card__text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(10, 24, 38, 0.62);
+  margin: 0;
+}
+
+@media (max-width: 1080px) {
+  .scope__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .scope {
+    padding: 90px 0 80px;
+  }
+
+  .scope__accent {
+    width: 320px;
+    height: 320px;
+    bottom: -120px;
+    left: -140px;
+  }
+}
+
+/* --- Mobile carousel: one card at a time, swipe or tap the dots --- */
+.scope-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.scope-carousel__track {
+  display: flex;
+  touch-action: pan-y;
+  transition: transform 420ms ease;
+}
+
+.scope-carousel__slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+
+.scope-carousel__slide .scope-card {
+  opacity: 1;
+  transform: none;
+  height: 100%;
+}
+
+.scope-carousel__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(10, 24, 38, 0.12);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--color-dark, #0a1826);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(10, 24, 38, 0.08);
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.scope-carousel__nav:hover,
+.scope-carousel__nav:focus {
+  transform: translateY(-50%) scale(1.04);
+  border-color: rgba(1, 123, 253, 0.35);
+  background: #fff;
+}
+
+.scope-carousel__nav--prev {
+  left: 12px;
+}
+
+.scope-carousel__nav--next {
+  right: 12px;
+}
+
+.scope-carousel__nav svg {
+  width: 18px;
+  height: 18px;
+}
+
+.scope-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.scope-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(1, 123, 253, 0.4);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 220ms ease, width 220ms ease, border-color 220ms ease;
+}
+
+.scope-carousel__dot--active {
+  background: var(--luxury-blue, rgb(1, 123, 253));
+  border-color: var(--luxury-blue, rgb(1, 123, 253));
+  width: 26px;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .scope__grid {
+    grid-template-columns: 1fr;
+  }
+}

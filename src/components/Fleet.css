@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
+
+.fleet {
+  position: relative;
+  direction: ltr;
+  background: var(--color-white, #f7f5f0);
+  padding: 100px 0 110px;
+  overflow: hidden;
+}
+
+/* --- Heading block, same reveal pattern as the rest of the site --- */
+.fleet__heading {
+  max-width: 720px;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.fleet--visible .fleet__heading {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fleet__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--luxury-blue, rgb(1, 123, 253));
+  margin: 0 0 16px;
+}
+
+.fleet__eyebrow::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.fleet__title {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(26px, 3.4vw, 40px);
+  line-height: 1.18;
+  letter-spacing: 0.2px;
+  color: var(--color-dark, #0a1826);
+  margin: 0 0 20px;
+}
+
+.fleet__title span {
+  color: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.fleet__intro {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: rgba(10, 24, 38, 0.68);
+  margin: 0;
+}
+
+/* =========================================================
+   FLEET GRID
+   ========================================================= */
+.fleet__body {
+  margin-top: 56px;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms ease 100ms, transform 700ms ease 100ms;
+}
+
+.fleet--visible .fleet__body {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Total vehicles — the one bold element on the page */
+.fleet__total {
+  position: relative;
+  width: 220px;
+  margin: 0 auto 40px;
+  padding: 34px 20px 30px;
+  text-align: center;
+  color: var(--color-white, #fff);
+  background: linear-gradient(155deg, rgb(1, 123, 253) 0%, #0a1826 130%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+}
+
+.fleet__total-figure {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 900;
+  font-size: 46px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+.fleet__total-label {
+  margin-top: 10px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.fleet__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.fleet__card {
+  position: relative;
+  background: var(--color-white, #fff);
+  border: 1px solid rgba(10, 24, 38, 0.1);
+  padding: 26px 22px 24px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  transition: border-color 220ms ease, box-shadow 260ms ease, transform 260ms ease;
+}
+
+.fleet__card:hover {
+  border-color: rgba(1, 123, 253, 0.35);
+  box-shadow: 0 20px 44px rgba(10, 24, 38, 0.08);
+  transform: translateY(-3px);
+}
+
+.fleet__card-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(1, 123, 253, 0.35);
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--luxury-blue, rgb(1, 123, 253));
+  margin-bottom: 16px;
+}
+
+.fleet__card-name {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-dark, #0a1826);
+  margin: 0 0 6px;
+}
+
+.fleet__card-detail {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(10, 24, 38, 0.55);
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 900px) and (min-width: 561px) {
+  .fleet__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .fleet {
+    padding: 70px 0 80px;
+  }
+
+  .fleet__total {
+    width: 170px;
+    padding: 24px 16px 20px;
+    margin-bottom: 24px;
+  }
+
+  .fleet__total-figure {
+    font-size: 36px;
+  }
+
+  /* Compact horizontal slider instead of a tall stacked list */
+  .fleet__grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 0 10px;
+  }
+
+  .fleet__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fleet__card {
+    flex: 0 0 auto;
+    width: 62vw;
+    max-width: 220px;
+    scroll-snap-align: start;
+    padding: 18px 16px 16px;
+  }
+
+  .fleet__card-count {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .fleet__card-name {
+    font-size: 14px;
+  }
+
+  .fleet__card-detail {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fleet__heading,
+  .fleet__body,
+  .fleet__card {
+    transition: none;
+  }
+}

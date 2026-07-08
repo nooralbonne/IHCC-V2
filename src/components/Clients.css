@@ -1,0 +1,275 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
+
+.clients {
+  position: relative;
+  direction: ltr;
+  background: var(--color-dark, #0a1826);
+  padding: 110px 0 100px;
+  overflow: hidden;
+}
+
+/* --- Diagonal seam, same signature device carried from Header / About --- */
+.clients__seam {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: block;
+  pointer-events: none;
+}
+
+.clients__seam-fill {
+  fill: var(--color-dark, #0a1826);
+}
+
+.clients__seam-line {
+  stroke: rgba(1, 123, 253, 0.3);
+  stroke-width: 1.5;
+}
+
+/* Quiet diagonal wash, echoing Projects__accent but tuned for the dark bg */
+.clients__accent {
+  position: absolute;
+  bottom: -200px;
+  left: -160px;
+  width: 460px;
+  height: 460px;
+  background: linear-gradient(
+    135deg,
+    rgba(1, 123, 253, 0.1),
+    rgba(1, 123, 253, 0) 70%
+  );
+  transform: rotate(-18deg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.clients__container {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Header --- */
+.clients__header {
+  max-width: 640px;
+  margin: 0 auto 60px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.clients--visible .clients__header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.clients__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--luxury-blue, rgb(1, 123, 253));
+  margin: 0 0 18px;
+}
+
+.clients__eyebrow::before,
+.clients__eyebrow::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.clients__title {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(28px, 3.6vw, 42px);
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  color: var(--color-white, #f7f5f0);
+  margin: 0 0 18px;
+}
+
+.clients__title span {
+  color: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.clients__intro {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: rgba(247, 245, 240, 0.62);
+  margin: 0 auto;
+  max-width: 520px;
+}
+
+/* --- Marquee --- */
+.clients__marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease 160ms, transform 700ms ease 160ms;
+
+  /* Fade the row into the dark background at both edges */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.clients--visible .clients__marquee {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.clients__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 0;
+  animation: clientsScroll 34s linear infinite;
+}
+
+.clients__marquee:hover .clients__track {
+  animation-play-state: paused;
+}
+
+@keyframes clientsScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* exactly -50%: the track is duplicated once, so this loops seamlessly */
+    transform: translateX(-50%);
+  }
+}
+
+.clients__logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 190px;
+  height: 130px;
+  margin: 0 6px;
+  border: 1px solid rgba(247, 245, 240, 0.1);
+  background: rgba(247, 245, 240, 0.03);
+  border-radius: 2px;
+  transition: border-color 260ms ease, background 260ms ease, transform 260ms ease;
+}
+
+.clients__logo:hover {
+  border-color: rgba(1, 123, 253, 0.4);
+  background: rgba(247, 245, 240, 0.06);
+  transform: translateY(-4px);
+}
+
+.clients__logo img {
+  max-width: 68%;
+  max-height: 58%;
+  object-fit: contain;
+  filter: none;
+  opacity: 1;
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+
+.clients__logo:hover img {
+  transform: scale(1.02);
+  opacity: 1;
+}
+
+/* --- Stat strip beneath the marquee --- */
+.clients__stats {
+  display: flex;
+  justify-content: center;
+  gap: 72px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(247, 245, 240, 0.1);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease 260ms, transform 700ms ease 260ms;
+}
+
+.clients--visible .clients__stats {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.clients__stat {
+  text-align: center;
+}
+
+.clients__stat-number {
+  display: block;
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 800;
+  font-size: clamp(26px, 2.6vw, 34px);
+  color: var(--color-white, #f7f5f0);
+  margin-bottom: 8px;
+}
+
+.clients__stat-label {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(247, 245, 240, 0.5);
+}
+
+@media (max-width: 900px) {
+  .clients {
+    padding: 80px 0 76px;
+  }
+
+  .clients__logo {
+    width: 150px;
+    height: 105px;
+  }
+
+  .clients__stats {
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .clients__eyebrow::before,
+  .clients__eyebrow::after {
+    display: none;
+  }
+
+  .clients__logo {
+    width: 128px;
+    height: 90px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients__track {
+    animation: none;
+  }
+}

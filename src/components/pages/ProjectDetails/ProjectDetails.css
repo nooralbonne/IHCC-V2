@@ -1,0 +1,465 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
+
+.project-details {
+  position: relative;
+  direction: ltr;
+  background: var(--color-white, #f7f5f0);
+  padding: 0 0 110px;
+  overflow: hidden;
+}
+
+/* --- Diagonal seam continuing the Header's signature cut --- */
+.project-details__seam {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: block;
+  pointer-events: none;
+}
+
+.project-details__seam-fill {
+  fill: var(--color-dark, #0a1826);
+}
+
+.project-details__seam-line {
+  stroke: rgba(1, 123, 253, 0.3);
+  stroke-width: 1.5;
+}
+
+/* =========================================================
+   GALLERY — contained (not full-bleed), images first, name
+   and thumbnails both sit below the image in normal flow
+   ========================================================= */
+.project-details__gallery-wrap {
+  position: relative;
+  z-index: 1;
+  padding-top: 56px;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.project-details--visible .project-details__gallery-wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-details__gallery {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-dark, #0a1826);
+  /* diagonal-cut corner, the site's recurring signature */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 34px 100%, 0 calc(100% - 34px));
+}
+
+.project-details__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 650ms ease, transform 900ms ease;
+  z-index: 0;
+}
+
+.project-details__slide--active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+/* Status + category chips floating over the image corner only */
+.project-details__chips {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  display: flex;
+  gap: 10px;
+}
+
+.project-details__chip {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-white, #fff);
+  background: rgba(10, 24, 38, 0.6);
+  backdrop-filter: blur(3px);
+  padding: 7px 14px;
+  border-radius: 2px;
+}
+
+.project-details__chip--progress {
+  background: var(--luxury-blue, rgb(1, 123, 253));
+  color: #0a1826;
+}
+
+/* Prev / next arrows for the gallery */
+.project-details__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(1, 123, 253, 0.4);
+  background: rgba(10, 24, 38, 0.4);
+  color: var(--color-white, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+
+.project-details__nav:hover {
+  background: var(--luxury-blue, rgb(1, 123, 253));
+  border-color: var(--luxury-blue, rgb(1, 123, 253));
+  color: #0a1826;
+}
+
+.project-details__nav--prev {
+  left: 16px;
+}
+
+.project-details__nav--next {
+  right: 16px;
+}
+
+.project-details__nav svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Thumbnail strip — below the image, in normal document flow */
+.project-details__thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-bottom: 4px;
+}
+
+.project-details__thumbs::-webkit-scrollbar {
+  height: 5px;
+}
+
+.project-details__thumbs::-webkit-scrollbar-thumb {
+  background: rgba(10, 24, 38, 0.2);
+  border-radius: 4px;
+}
+
+.project-details__thumb {
+  width: 84px;
+  height: 60px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 1.5px solid rgba(10, 24, 38, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+  opacity: 0.65;
+  transition: opacity 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+
+.project-details__thumb:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.project-details__thumb--active {
+  opacity: 1;
+  border-color: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.project-details__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Title block — below the gallery + thumbnails, not on the image */
+.project-details__heading {
+  margin-top: 36px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease 100ms, transform 700ms ease 100ms;
+}
+
+.project-details--visible .project-details__heading {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-details__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--luxury-blue, rgb(1, 123, 253));
+  margin: 0 0 16px;
+}
+
+.project-details__eyebrow::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+.project-details__title {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(24px, 3.4vw, 40px);
+  line-height: 1.18;
+  letter-spacing: 0.2px;
+  color: var(--color-dark, #0a1826);
+  max-width: 780px;
+  margin: 0;
+}
+
+/* =========================================================
+   BODY — description + meta card, below the gallery
+   ========================================================= */
+.project-details__container {
+  position: relative;
+  z-index: 1;
+  padding-top: 48px;
+}
+
+.project-details__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.project-details__content {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.project-details--visible .project-details__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-details__section-label {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(10, 24, 38, 0.45);
+  margin: 0 0 16px;
+}
+
+.project-details__text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 15.5px;
+  line-height: 1.9;
+  color: rgba(10, 24, 38, 0.68);
+  margin: 0 0 20px;
+}
+
+.project-details__text:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Meta card, styled after the reference table --- */
+.project-details__meta-card {
+  background: var(--color-white, #fff);
+  border: 1px solid rgba(10, 24, 38, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 700ms ease 140ms, transform 700ms ease 140ms,
+    box-shadow 260ms ease;
+}
+
+.project-details--visible .project-details__meta-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-details__meta-card:hover {
+  box-shadow: 0 20px 44px rgba(10, 24, 38, 0.1);
+}
+
+.project-details__meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(10, 24, 38, 0.08);
+}
+
+.project-details__meta-row:last-child {
+  border-bottom: none;
+}
+
+.project-details__meta-label {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: rgba(10, 24, 38, 0.45);
+  white-space: nowrap;
+}
+
+.project-details__meta-value {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 14.5px;
+  color: var(--color-dark, #0a1826);
+  text-align: right;
+}
+
+/* Quiet diagonal accent tab on the meta card, echoing the site signature */
+.project-details__meta-card::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--luxury-blue, rgb(1, 123, 253)) 0%,
+    rgba(1, 123, 253, 0.15) 100%
+  );
+}
+
+/* --- CTA row --- */
+.project-details__cta {
+  display: flex;
+  gap: 18px;
+  margin-top: 40px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease 220ms, transform 700ms ease 220ms;
+}
+
+.project-details--visible .project-details__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-details__cta .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.project-details__cta .btn-outline {
+  color: var(--color-dark, #0a1826);
+  border-color: rgba(10, 24, 38, 0.2);
+}
+
+.project-details__cta .btn-outline:hover {
+  border-color: var(--luxury-blue, rgb(1, 123, 253));
+  color: var(--luxury-blue, rgb(1, 123, 253));
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 900px) {
+  .project-details__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Meta card (client, value, area, etc.) reads first on mobile,
+     description follows below it */
+  .project-details__meta-card {
+    order: 1;
+  }
+
+  .project-details__content {
+    order: 2;
+  }
+
+  .project-details__gallery {
+    height: 340px;
+  }
+
+  .project-details__nav {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-details__gallery-wrap {
+    padding-top: 36px;
+  }
+
+  .project-details__gallery {
+    height: 240px;
+  }
+
+  .project-details__chips {
+    top: 12px;
+    right: 12px;
+  }
+
+  .project-details__thumb {
+    width: 60px;
+    height: 44px;
+  }
+
+  .project-details__heading {
+    margin-top: 26px;
+  }
+
+  .project-details__container {
+    padding-top: 36px;
+  }
+
+  .project-details__meta-row {
+    padding: 15px 18px;
+  }
+
+  .project-details__cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .project-details__cta .btn {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-details__content,
+  .project-details__meta-card,
+  .project-details__cta,
+  .project-details__gallery-wrap,
+  .project-details__heading,
+  .project-details__slide {
+    transition: none;
+  }
+}
