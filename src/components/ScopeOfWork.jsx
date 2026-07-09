@@ -193,39 +193,41 @@ export default function ScopeOfWork({ mobileCarousel = true }) {
               ))}
             </div>
 
-            <button
-              type="button"
-              className="scope-carousel__nav scope-carousel__nav--prev"
-              aria-label="Previous service"
-              onClick={goPrev}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
+            <div className="scope-carousel__controls">
+              <button
+                type="button"
+                className="scope-carousel__nav scope-carousel__nav--prev"
+                aria-label="Previous service"
+                onClick={goPrev}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
 
-            <button
-              type="button"
-              className="scope-carousel__nav scope-carousel__nav--next"
-              aria-label="Next service"
-              onClick={goNext}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </button>
+              <div className="scope-carousel__dots">
+                {SERVICES.map((service, index) => (
+                  <button
+                    key={service.title}
+                    className={`scope-carousel__dot ${
+                      index === activeIndex ? "scope-carousel__dot--active" : ""
+                    }`}
+                    aria-label={`Go to service ${index + 1}`}
+                    onClick={() => goTo(index)}
+                  />
+                ))}
+              </div>
 
-            <div className="scope-carousel__dots">
-              {SERVICES.map((service, index) => (
-                <button
-                  key={service.title}
-                  className={`scope-carousel__dot ${
-                    index === activeIndex ? "scope-carousel__dot--active" : ""
-                  }`}
-                  aria-label={`Go to service ${index + 1}`}
-                  onClick={() => goTo(index)}
-                />
-              ))}
+              <button
+                type="button"
+                className="scope-carousel__nav scope-carousel__nav--next"
+                aria-label="Next service"
+                onClick={goNext}
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
             </div>
           </div>
         ) : (

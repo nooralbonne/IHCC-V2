@@ -150,6 +150,9 @@
 }
 
 @media (max-width: 900px) {
+  .ihcc-nav__brand{
+    padding: 6px 1px;
+  }
   .ihcc-nav__links {
     display: none;
   }

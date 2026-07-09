@@ -43,7 +43,6 @@ import royalJordanianAirForce2 from "../../assets/images/projects/9.RoyalAirForc
 import royalJordanianAirForce3 from "../../assets/images/projects/9.RoyalAirForceCommand/RoyalAirForce3.jpeg";
 
 import FireStation1 from "../../assets/images/projects/10.FireBrigadeandServiceBuildings—NewPortofAqaba/FireStation1.jpeg";
-import FireStation2 from "../../assets/images/projects/10.FireBrigadeandServiceBuildings—NewPortofAqaba/FireStation2.jpeg";
 
 import ElectricityHousing from "../../assets/images/projects/11.ElectricityHousingMixedPrimarySchool/ElectricityHousing.jpeg";
 
@@ -366,7 +365,7 @@ export const PROJECTS = [
     location: "Aqaba, Jordan",
     started: "April 2021",
     supervisor: "Holy Rock Consultant Engineers",
-    images: [FireStation1, FireStation2],
+    images: [FireStation1],
     description: [
       "A two-story complex at the New Port of Aqaba spanning 5,500 m², including emergency, administrative, operational, and support facilities.",
       "The project includes all civil, mechanical, and electrical works to support port operations and emergency response capabilities.",

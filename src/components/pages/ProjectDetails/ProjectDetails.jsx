@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { PROJECTS } from "../../data/projects";
 import "./ProjectDetails.css";
 
@@ -185,16 +185,16 @@ export default function ProjectDetails({ project: propProject }) {
             ))}
 
             <div className="project-details__cta">
-              <a href="/projects" className="btn btn-outline">
+              <Link to="/projects" className="btn btn-outline">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M19 12H5" />
                   <path d="m12 19-7-7 7-7" />
                 </svg>
                 Back to Projects
-              </a>
-              <a href="#contact" className="btn btn-accent">
+              </Link>
+              <Link to="/contact" className="btn btn-accent">
                 Discuss a Similar Project
-              </a>
+              </Link>
             </div>
           </div>
 

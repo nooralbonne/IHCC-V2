@@ -56,7 +56,7 @@ export default function CEOMessage() {
         <div className="ceo__grid">
           <div className="ceo__media">
             <img
-              className="ceo"
+              className="ceo__image"
               src={CEO}
               alt="Portrait of IHCC's Chief Executive Officer"
             />

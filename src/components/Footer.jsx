@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 export default function Footer() {
@@ -68,11 +69,11 @@ export default function Footer() {
           <div className="footer__col">
             <p className="footer__col-title">Quick Links</p>
             <ul className="footer__links">
-              <li><a href="/">Home</a></li>
-              <li><a href="/about">About Us</a></li>
-              <li><a href="/services">Scope of Work</a></li>
-              <li><a href="/projects">Projects</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/services">Scope of Work</Link></li>
+              <li><Link to="/projects">Projects</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 

@@ -238,14 +238,21 @@
   height: 100%;
 }
 
+.scope-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 22px;
+}
+
 .scope-carousel__nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  position: static;
+  flex: 0 0 auto;
   width: 40px;
   height: 40px;
   border: 1px solid rgba(10, 24, 38, 0.12);
-  background: rgba(255, 255, 255, 0.96);
+  background: #fff;
   color: var(--color-dark, #0a1826);
   border-radius: 999px;
   display: flex;
@@ -258,17 +265,9 @@
 
 .scope-carousel__nav:hover,
 .scope-carousel__nav:focus {
-  transform: translateY(-50%) scale(1.04);
+  transform: scale(1.06);
   border-color: rgba(1, 123, 253, 0.35);
   background: #fff;
-}
-
-.scope-carousel__nav--prev {
-  left: 12px;
-}
-
-.scope-carousel__nav--next {
-  right: 12px;
 }
 
 .scope-carousel__nav svg {
@@ -280,7 +279,6 @@
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 22px;
 }
 
 .scope-carousel__dot {

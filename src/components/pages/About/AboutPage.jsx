@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "./AboutPage.css";
 
 /**
@@ -302,7 +303,7 @@ export default function AboutPage() {
         <span className="about-page-hero__accent" aria-hidden="true" />
         <div className="container">
           <p className="about-page-hero__breadcrumb">
-            <a href="/">Home</a> / <span>About Us</span>
+            <Link to="/">Home</Link> / <span>About Us</span>
           </p>
           <h1 className="about-page-hero__title">
             About <span>IHCC</span>

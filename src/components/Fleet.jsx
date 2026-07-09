@@ -23,7 +23,12 @@ const FLEET_DATA = {
 
 export default function Fleet({ data = FLEET_DATA }) {
   const sectionRef = useRef(null);
+  const gridRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [atEnd, setAtEnd] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [thumbWidthPercent, setThumbWidthPercent] = useState(30);
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -42,6 +47,27 @@ export default function Fleet({ data = FLEET_DATA }) {
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const updateThumbWidth = () => {
+      const node = gridRef.current;
+      if (!node || node.scrollWidth === 0) return;
+      const ratio = (node.clientWidth / node.scrollWidth) * 100;
+      setThumbWidthPercent(Math.max(15, Math.min(90, ratio)));
+    };
+    updateThumbWidth();
+    window.addEventListener("resize", updateThumbWidth);
+    return () => window.removeEventListener("resize", updateThumbWidth);
+  }, []);
+
+  const handleGridScroll = () => {
+    const node = gridRef.current;
+    if (!node) return;
+    if (!hasScrolled) setHasScrolled(true);
+    const maxScroll = node.scrollWidth - node.clientWidth;
+    setAtEnd(node.scrollLeft >= maxScroll - 4);
+    setScrollProgress(maxScroll > 0 ? node.scrollLeft / maxScroll : 0);
+  };
 
   return (
     <section
@@ -68,14 +94,37 @@ export default function Fleet({ data = FLEET_DATA }) {
             <div className="fleet__total-label">{data.totalLabel}</div>
           </div>
 
-          <div className="fleet__grid">
-            {data.categories.map((item) => (
-              <div className="fleet__card" key={item.name}>
-                <span className="fleet__card-count">{item.count}</span>
-                <p className="fleet__card-name">{item.name}</p>
-                <p className="fleet__card-detail">— {item.detail}</p>
-              </div>
-            ))}
+          <div
+            className={`fleet__grid-wrap ${atEnd ? "fleet__grid-wrap--end" : ""}`}
+          >
+            <div className="fleet__grid" ref={gridRef} onScroll={handleGridScroll}>
+              {data.categories.map((item) => (
+                <div className="fleet__card" key={item.name}>
+                  <span className="fleet__card-count">{item.count}</span>
+                  <p className="fleet__card-name">{item.name}</p>
+                  <p className="fleet__card-detail">— {item.detail}</p>
+                </div>
+              ))}
+            </div>
+
+            <span
+              className={`fleet__swipe-hint ${hasScrolled ? "fleet__swipe-hint--hidden" : ""}`}
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M13 5l7 7-7 7M4 12h16" />
+              </svg>
+            </span>
+
+            <div className="fleet__scroll-track" aria-hidden="true">
+              <div
+                className="fleet__scroll-thumb"
+                style={{
+                  width: `${thumbWidthPercent}%`,
+                  left: `${scrollProgress * (100 - thumbWidthPercent)}%`,
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

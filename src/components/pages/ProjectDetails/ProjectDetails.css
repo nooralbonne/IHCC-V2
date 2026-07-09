@@ -388,6 +388,17 @@
    RESPONSIVE
    ========================================================= */
 @media (max-width: 900px) {
+  .project-details__gallery {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-dark, #0a1826);
+  /* diagonal-cut corner, the site's recurring signature */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 34px 100%, 0 calc(100% - 34px));
+}
+
   .project-details__grid {
     grid-template-columns: 1fr;
     gap: 40px;

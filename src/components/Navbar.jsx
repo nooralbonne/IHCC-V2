@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../assets/logo.jpeg";
 
@@ -7,7 +8,6 @@ const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
   { label: "Services", href: "/services" },
-  
 ];
 
 export default function Navbar() {
@@ -24,22 +24,22 @@ export default function Navbar() {
     <header className={`ihcc-nav ${isScrolled ? "ihcc-nav--scrolled" : ""}`}>
       <div className="ihcc-nav__inner">
         {/* Logo — enlarged on purpose, it's the first thing that should register */}
-        <a href="/" className="ihcc-nav__brand" aria-label="IHCC — Home">
+        <Link to="/" className="ihcc-nav__brand" aria-label="IHCC — Home">
           <img src={logo} alt="Infinite Horizons Construction Company (IHCC) logo" />
-        </a>
+        </Link>
 
         <nav className="ihcc-nav__links" aria-label="Main navigation">
           {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href}>
+            <Link key={link.href} to={link.href}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="ihcc-nav__actions">
-          <a href="/contact" className="ihcc-nav__cta">
+          <Link to="/contact" className="ihcc-nav__cta">
             Contact Us
-          </a>
+          </Link>
 
           <button
             className={`ihcc-nav__burger ${isMenuOpen ? "is-open" : ""}`}
@@ -57,13 +57,13 @@ export default function Navbar() {
       {/* Mobile drawer */}
       <div className={`ihcc-nav__mobile ${isMenuOpen ? "is-open" : ""}`}>
         {NAV_LINKS.map((link) => (
-          <a key={link.href} href={link.href} onClick={() => setIsMenuOpen(false)}>
+          <Link key={link.href} to={link.href} onClick={() => setIsMenuOpen(false)}>
             {link.label}
-          </a>
+          </Link>
         ))}
-        <a href="#contact" className="ihcc-nav__cta ihcc-nav__cta--mobile" onClick={() => setIsMenuOpen(false)}>
+        <Link to="/contact" className="ihcc-nav__cta ihcc-nav__cta--mobile" onClick={() => setIsMenuOpen(false)}>
           Contact Us
-        </a>
+        </Link>
       </div>
     </header>
   );
