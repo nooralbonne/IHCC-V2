@@ -65,8 +65,21 @@ export default function Projects() {
   const visibleProjects = isProjectsPage ? PROJECTS : PROJECTS.slice(0, 6);
   const showMobileCarousel = isMobile && !isProjectsPage;
 
-  // Reveal-on-scroll, same pattern used across the site
+  // Reveal-on-scroll, same pattern used across the site.
+  // On the dedicated /projects archive page this section IS the page's
+  // main content (not a teaser further down the homepage), and it can be
+  // very tall (many cards, single column on mobile) — waiting for 15% of
+  // the whole section to scroll into view could take forever or never
+  // trigger. So on that route we just show everything immediately, and
+  // for the homepage teaser we use a much looser threshold/rootMargin so
+  // it reveals as soon as the section starts entering the viewport
+  // instead of needing a big chunk of it visible first.
   useEffect(() => {
+    if (isProjectsPage) {
+      setIsVisible(true);
+      return undefined;
+    }
+
     const node = sectionRef.current;
     if (!node) return undefined;
 
@@ -77,12 +90,12 @@ export default function Projects() {
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [isProjectsPage]);
 
   // Switch to a single-card carousel on phone-width screens
   useEffect(() => {
