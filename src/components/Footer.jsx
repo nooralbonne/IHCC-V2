@@ -108,6 +108,11 @@ export default function Footer() {
           <p className="footer__copyright">
             &copy; {year} Ismail Al-Hersh Contracting Company. All rights reserved.
           </p>
+
+           <p className="footer__copyright">
+            Powered by Tenma
+          </p>
+
          {/* <div className="footer__legal">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>
