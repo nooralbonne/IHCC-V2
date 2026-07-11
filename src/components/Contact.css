@@ -286,11 +286,39 @@
   background: rgba(247, 245, 240, 0.07);
 }
 
-.contact__form .btn {
+.contact__submit-row {
   grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.contact__form .btn {
   justify-self: start;
   border: none;
   cursor: pointer;
+}
+
+.contact__form .btn:disabled {
+  cursor: wait;
+  opacity: 0.75;
+}
+
+.contact__status {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.contact__status--success {
+  color: #7ee8b7;
+}
+
+.contact__status--error {
+  color: #ff9b9b;
 }
 
 @media (max-width: 1024px) {

@@ -7,6 +7,12 @@ import Dentistry1 from "../../assets/images/projects/2.ConstructionoftheEducatio
 import Dentistry2 from "../../assets/images/projects/2.ConstructionoftheEducationalClinicsBuilding—FacultyofDentistry/Dentistry2.jpeg";
 import Dentistry3 from "../../assets/images/projects/2.ConstructionoftheEducationalClinicsBuilding—FacultyofDentistry/Dentistry3.jpeg";
 import Dentistry4 from "../../assets/images/projects/2.ConstructionoftheEducationalClinicsBuilding—FacultyofDentistry/Dentistry4.jpeg";
+import Dentistry5 from "../../assets/images/projects/2.ConstructionoftheEducationalClinicsBuilding—FacultyofDentistry/Dentistry5.jpeg";
+import Dentistry6 from "../../assets/images/projects/2.ConstructionoftheEducationalClinicsBuilding—FacultyofDentistry/Dentistry6.jpeg";
+import Dentistry7 from "../../assets/images/projects/2.ConstructionoftheEducationalClinicsBuilding—FacultyofDentistry/Dentistry7.jpeg";
+import Dentistry8 from "../../assets/images/projects/2.ConstructionoftheEducationalClinicsBuilding—FacultyofDentistry/Dentistry8.jpeg";
+
+
 
 import classroomssportshall1 from "../../assets/images/projects/3.ConstructionofClassroomsBuilding&SportsHall/classrooms-sports-hall-1.jpeg";
 import classroomssportshall2 from "../../assets/images/projects/3.ConstructionofClassroomsBuilding&SportsHall/classrooms-sports-hall-2.jpeg";
@@ -17,6 +23,7 @@ import CivilDefence1 from "../../assets/images/projects/4.CivilDefenceDirectorat
 import CivilDefence2 from "../../assets/images/projects/4.CivilDefenceDirectorateProject/CivilDefence2.jpeg";
 import CivilDefence3 from "../../assets/images/projects/4.CivilDefenceDirectorateProject/CivilDefence3.jpeg";
 import CivilDefence4 from "../../assets/images/projects/4.CivilDefenceDirectorateProject/CivilDefence4.jpeg";
+import CivilDefence5 from "../../assets/images/projects/4.CivilDefenceDirectorateProject/CivilDefence5.jpeg";
 
 import alrisha5 from "../../assets/images/projects/5.Al-RishaPowerStation/alrisha2.jpeg";
 import alrisha6 from "../../assets/images/projects/5.Al-RishaPowerStation/alrisha3.jpeg";
@@ -114,7 +121,7 @@ export const PROJECTS = [
     location: "Zarqa, Jordan",
     started: "October 2025",
     supervisor: "Samat Engineering Consultants",
-    images: [Dentistry1, Dentistry2, Dentistry3, Dentistry4],
+    images: [Dentistry1, Dentistry2, Dentistry3, Dentistry4, Dentistry5, Dentistry6, Dentistry7, Dentistry8],
     description: [
       "A specialized dental education facility comprising 4 main floors including clinical, educational, and administrative facilities.",
       "The building features 267 fully equipped dental clinics and clinical capacity of approximately 210 beds, representing a significant investment in dental education in Jordan.",
@@ -181,7 +188,7 @@ export const PROJECTS = [
     location: "Ma'an, Jordan",
     started: "March 2018",
     supervisor: "Civil Defense Directorate",
-    images: [CivilDefence2, CivilDefence4, CivilDefence3, CivilDefence1],
+    images: [CivilDefence2, CivilDefence4, CivilDefence3,CivilDefence5, CivilDefence1],
     description: [
       "A 10,000 m² main building for the Civil Defense Directorate in Ma'an with supporting facilities.",
       "The project includes canopies, asphalt yards, boundary walls, and service buildings with all civil, mechanical, and electrical works.",

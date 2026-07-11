@@ -3,9 +3,11 @@ import About from "../../About";
 import Projects from "../../Projects";
 import Clients from "../../Clients";
 import ScopeOfWork from "../../ScopeOfWork";
+import Certificates from "../../Certificates.jsx";
 import Contact from "../../Contact";
 import CEOMessage from "../../CEOMessage";
 import Fleet from "../../Fleet"
+
 export default function Home() {
   return (
     <>
@@ -14,6 +16,7 @@ export default function Home() {
       <Projects />
       <Clients />
       <ScopeOfWork />
+      <Certificates />
       <CEOMessage />
       <Fleet />
       <Contact />

@@ -1,17 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./AboutPage.css";
-
-/**
- * Full About Us page, linked from the homepage About teaser's
- * "Read More" button. Reuses the site's signature system throughout:
- * Poppins display type, the navy / luxury-blue palette, the
- * diagonal-cut seam, and the same IntersectionObserver reveal pattern
- * used on every other section of the site.
- *
- * Order: History timeline (from the reference deck) → Mission →
- * Vision → Values.
- */
+import OrgChart from "../../OrgChart";
+import CompanyProfile from "../../CompanyProfile";
 
 function useReveal(threshold = 0.15) {
   const ref = useRef(null);
@@ -319,6 +310,8 @@ export default function AboutPage() {
       <History />
       <MissionVision />
       <Values />
+      <OrgChart />
+      <CompanyProfile />
     </>
   );
 }

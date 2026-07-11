@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap");
+
+.company-profile {
+  position: relative;
+  direction: ltr;
+  background: linear-gradient(155deg, #0a1826 0%, #10233a 60%, rgb(1, 123, 253) 160%);
+  padding: 90px 0;
+  overflow: hidden;
+}
+
+.company-profile__accent {
+  position: absolute;
+  top: -160px;
+  right: -140px;
+  width: 420px;
+  height: 420px;
+  background: linear-gradient(
+    135deg,
+    rgba(1, 123, 253, 0.22),
+    rgba(255, 255, 255, 0.03)
+  );
+  transform: rotate(-18deg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.company-profile__container {
+  position: relative;
+  z-index: 1;
+}
+
+.company-profile__content {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.company-profile--visible .company-profile__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.company-profile__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #6cb2ff;
+  margin: 0 0 18px;
+}
+
+.company-profile__eyebrow::before,
+.company-profile__eyebrow::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #6cb2ff;
+}
+
+.company-profile__title {
+  font-family: "Poppins", "Inter", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(28px, 3.8vw, 42px);
+  line-height: 1.16;
+  letter-spacing: 0.2px;
+  color: #fff;
+  margin: 0 0 22px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.company-profile__title span:first-child {
+  color: #6cb2ff;
+}
+
+.company-profile__text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 auto 36px;
+}
+
+.company-profile__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.company-profile__cta svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 640px) {
+  .company-profile {
+    padding: 70px 0;
+  }
+
+  .company-profile__accent {
+    width: 280px;
+    height: 280px;
+    top: -120px;
+    right: -120px;
+  }
+}

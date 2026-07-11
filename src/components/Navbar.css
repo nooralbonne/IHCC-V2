@@ -170,6 +170,10 @@
   }
 
   .ihcc-nav__mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     max-height: 0;
     overflow: hidden;
     background: var(--color-white);
@@ -179,6 +183,7 @@
     flex-direction: column;
     padding: 0 28px;
     transition: max-height 320ms ease, padding 320ms ease;
+    z-index: 99;
   }
 
   .ihcc-nav__mobile.is-open {

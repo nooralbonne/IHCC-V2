@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import kamazConcreteMixer from "../assets/kamaz-concrete-mixer.jpg";
 import "./Fleet.css";
 
 /**
@@ -9,16 +10,18 @@ import "./Fleet.css";
  */
 const FLEET_DATA = {
   totalLabel: "Total Vehicles",
-  totalCount: 24,
+  totalCount: 72,
+  image: kamazConcreteMixer,
+  imageCaption: "Concrete Mixer — KAMAZ",
   categories: [
-    { count: 2, name: "Concrete Mixers", detail: "Kamaz" },
-    { count: 4, name: "Bulldozers", detail: "JCB & Komatsu" },
-    { count: 3, name: "Road Rollers", detail: "Bomag, Dynapac, CAT" },
-    { count: 3, name: "Loaders", detail: "Bobcat" },
-    { count: 1, name: "Bus", detail: "Hyundai" },
-    { count: 5, name: "Pick-ups", detail: "Dodge Ram, Isuzu, Toyota" },
-    { count: 6, name: "Passenger Cars", detail: "Toyota, Mercedes, Ford, Chevrolet" },
-  ],
+  { count: 6, name: "Concrete Mixers", detail: "Kamaz" },
+  { count: 12, name: "Bulldozers", detail: "JCB & Komatsu" },
+  { count: 9, name: "Road Rollers", detail: "Bomag, Dynapac, CAT" },
+  { count: 9, name: "Loaders", detail: "Bobcat" },
+  { count: 3, name: "Bus", detail: "Hyundai" },
+  { count: 15, name: "Pick-ups", detail: "Dodge Ram, Isuzu, Toyota" },
+  { count: 18, name: "Passenger Cars", detail: "Toyota, Mercedes, Ford, Chevrolet" },
+],
 };
 
 export default function Fleet({ data = FLEET_DATA }) {
@@ -89,41 +92,50 @@ export default function Fleet({ data = FLEET_DATA }) {
         </div>
 
         <div className="fleet__body">
-          <div className="fleet__total">
-            <div className="fleet__total-figure">{data.totalCount}</div>
-            <div className="fleet__total-label">{data.totalLabel}</div>
-          </div>
+          <div className="fleet__layout">
+            <figure className="fleet__media">
+              <img src={data.image} alt={data.imageCaption} loading="lazy" />
+              <figcaption className="fleet__media-caption">{data.imageCaption}</figcaption>
+            </figure>
 
-          <div
-            className={`fleet__grid-wrap ${atEnd ? "fleet__grid-wrap--end" : ""}`}
-          >
-            <div className="fleet__grid" ref={gridRef} onScroll={handleGridScroll}>
-              {data.categories.map((item) => (
-                <div className="fleet__card" key={item.name}>
-                  <span className="fleet__card-count">{item.count}</span>
-                  <p className="fleet__card-name">{item.name}</p>
-                  <p className="fleet__card-detail">— {item.detail}</p>
-                </div>
-              ))}
-            </div>
+            <div className="fleet__panel">
+              <div className="fleet__total">
+                <div className="fleet__total-figure">{data.totalCount}</div>
+                <div className="fleet__total-label">{data.totalLabel}</div>
+              </div>
 
-            <span
-              className={`fleet__swipe-hint ${hasScrolled ? "fleet__swipe-hint--hidden" : ""}`}
-              aria-hidden="true"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M13 5l7 7-7 7M4 12h16" />
-              </svg>
-            </span>
-
-            <div className="fleet__scroll-track" aria-hidden="true">
               <div
-                className="fleet__scroll-thumb"
-                style={{
-                  width: `${thumbWidthPercent}%`,
-                  left: `${scrollProgress * (100 - thumbWidthPercent)}%`,
-                }}
-              />
+                className={`fleet__grid-wrap ${atEnd ? "fleet__grid-wrap--end" : ""}`}
+              >
+                <div className="fleet__grid" ref={gridRef} onScroll={handleGridScroll}>
+                  {data.categories.map((item) => (
+                    <div className="fleet__card" key={item.name}>
+                      <span className="fleet__card-count">{item.count}</span>
+                      <p className="fleet__card-name">{item.name}</p>
+                      <p className="fleet__card-detail">— {item.detail}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <span
+                  className={`fleet__swipe-hint ${hasScrolled ? "fleet__swipe-hint--hidden" : ""}`}
+                  aria-hidden="true"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M13 5l7 7-7 7M4 12h16" />
+                  </svg>
+                </span>
+
+                <div className="fleet__scroll-track" aria-hidden="true">
+                  <div
+                    className="fleet__scroll-thumb"
+                    style={{
+                      width: `${thumbWidthPercent}%`,
+                      left: `${scrollProgress * (100 - thumbWidthPercent)}%`,
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

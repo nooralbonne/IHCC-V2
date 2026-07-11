@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import "./Contact.css";
 
 /**
@@ -50,7 +51,11 @@ const CONTACT_INFO = [
 
 export default function Contact() {
   const sectionRef = useRef(null);
+  const formRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -70,9 +75,42 @@ export default function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Wire this up to your form handler / API endpoint of choice.
+
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setSubmitStatus("error");
+      setSubmitMessage("EmailJS is not configured yet. Please add your service, template, and public key.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setSubmitMessage("");
+
+    try {
+      const formData = new FormData(formRef.current);
+      const templateParams = {
+        from_name: formData.get("from_name")?.toString() || "",
+        from_email: formData.get("from_email")?.toString() || "",
+        phone: formData.get("phone")?.toString() || "",
+        message: formData.get("message")?.toString() || "",
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      setSubmitStatus("success");
+      setSubmitMessage("Your message was sent successfully. We will get back to you shortly.");
+      formRef.current?.reset();
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitMessage("Sorry, your message could not be sent right now. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -142,10 +180,10 @@ export default function Contact() {
           </div>
 
           <div className="contact__form-wrap">
-            <form className="contact__form" onSubmit={handleSubmit}>
+            <form className="contact__form" onSubmit={handleSubmit} ref={formRef}>
               <div className="contact__field">
                 <label htmlFor="contact-name">Full Name</label>
-                <input id="contact-name" name="name" type="text" placeholder="Your name" required />
+                <input id="contact-name" name="from_name" type="text" placeholder="Your name" required />
               </div>
 
               <div className="contact__field">
@@ -155,7 +193,7 @@ export default function Contact() {
 
               <div className="contact__field contact__field--full">
                 <label htmlFor="contact-email">Email</label>
-                <input id="contact-email" name="email" type="email" placeholder="you@example.com" required />
+                <input id="contact-email" name="from_email" type="email" placeholder="you@example.com" required />
               </div>
 
               <div className="contact__field contact__field--full">
@@ -163,9 +201,16 @@ export default function Contact() {
                 <textarea id="contact-message" name="message" placeholder="Tell us about your project" required />
               </div>
 
-              <button type="submit" className="btn btn-accent">
-                Send Message
-              </button>
+              <div className="contact__submit-row">
+                <button type="submit" className="btn btn-accent" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </button>
+                {submitMessage ? (
+                  <p className={`contact__status ${submitStatus === "success" ? "contact__status--success" : "contact__status--error"}`}>
+                    {submitMessage}
+                  </p>
+                ) : null}
+              </div>
             </form>
           </div>
         </div>

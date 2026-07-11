@@ -14,7 +14,7 @@ import hashemiteLogo from "../assets/clients/hashemite.jpg";
 import healthLogo from "../assets/clients/Health.jpg";
 import mopwhLogo from "../assets/clients/mopwh.jpg";
 import nepcoLogo from "../assets/clients/nepco.jpg";
-
+import arabarmy from "../assets/clients/arabarmy.png";
 /**
  * Clients / Partners section — sits comfortably after About or Projects.
  * Shares the site's signature system: Poppins display type, the navy /
@@ -33,7 +33,7 @@ const CLIENTS = [
   { name: "The Hashemite University", logo: hashemiteLogo },
   { name: "Ministry of Health", logo: healthLogo },
   { name: "Ministry of Public Works & Housing", logo: mopwhLogo },
-  { name: "National Electric Power Company", logo: nepcoLogo },
+  { name: "Jordan Armed Forces - Arab Army", logo: arabarmy },
 ];
 
 export default function Clients() {
