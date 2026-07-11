@@ -6,6 +6,7 @@ import Contact from "./Contact";
 jest.mock("@emailjs/browser", () => ({
   __esModule: true,
   default: {
+    init: jest.fn(),
     send: jest.fn(),
   },
 }));

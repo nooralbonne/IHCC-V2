@@ -7,6 +7,10 @@ import "./Contact.css";
  * Dark background to bookend the Header, same scroll-reveal pattern
  * used across every other section on the page.
  */
+const DEFAULT_EMAILJS_SERVICE_ID = "service_3f5sv6f";
+const DEFAULT_EMAILJS_TEMPLATE_ID = "template_05yhrcn";
+const DEFAULT_EMAILJS_PUBLIC_KEY = "6V2_ZLQ2IzGEDboLY";
+
 const CONTACT_INFO = [
   {
     label: "Visit Us",
@@ -20,7 +24,7 @@ const CONTACT_INFO = [
   },
   {
     label: "Call Us",
-    value: "+962 6 000 0000",
+    value: "+962 6 560 7140",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
@@ -75,12 +79,19 @@ export default function Contact() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_ID || process.env.REACT_APP_EMAILJS_PUBLIC_KEY || DEFAULT_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || DEFAULT_EMAILJS_SERVICE_ID;
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || DEFAULT_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || DEFAULT_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
       setSubmitStatus("error");
@@ -93,21 +104,15 @@ export default function Contact() {
     setSubmitMessage("");
 
     try {
-      const formData = new FormData(formRef.current);
-      const templateParams = {
-        from_name: formData.get("from_name")?.toString() || "",
-        from_email: formData.get("from_email")?.toString() || "",
-        phone: formData.get("phone")?.toString() || "",
-        message: formData.get("message")?.toString() || "",
-      };
-
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
       setSubmitStatus("success");
       setSubmitMessage("Your message was sent successfully. We will get back to you shortly.");
       formRef.current?.reset();
     } catch (error) {
+      const errorMessage = error?.text || error?.message || "Unknown error";
+      console.error("EmailJS submission failed:", error);
       setSubmitStatus("error");
-      setSubmitMessage("Sorry, your message could not be sent right now. Please try again later.");
+      setSubmitMessage(`Sorry, your message could not be sent right now. Please verify your EmailJS Service ID, Template ID, and Public Key. ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
     }
