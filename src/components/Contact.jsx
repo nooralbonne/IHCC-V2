@@ -105,14 +105,26 @@ export default function Contact() {
 
     try {
       const formData = new FormData(formRef.current);
+      const name = formData.get("from_name")?.toString() || "";
+      const email = formData.get("from_email")?.toString() || "";
+      const phone = formData.get("phone")?.toString() || "";
+      const message = formData.get("message")?.toString() || "";
+
       const templateParams = {
-        from_name: formData.get("from_name")?.toString() || "",
-        from_email: formData.get("from_email")?.toString() || "",
-        phone: formData.get("phone")?.toString() || "",
-        message: formData.get("message")?.toString() || "",
+        from_name: name,
+        name,
+        user_name: name,
+        from_email: email,
+        email,
+        user_email: email,
+        phone,
+        user_phone: phone,
+        message,
+        user_message: message,
+        subject: `New contact request from ${name || "website visitor"}`,
         to_email: "noorbonne8@gmail.com",
         to_name: "Noor",
-        reply_to: formData.get("from_email")?.toString() || "",
+        reply_to: email,
       };
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
