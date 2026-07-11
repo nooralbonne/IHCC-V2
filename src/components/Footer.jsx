@@ -109,7 +109,7 @@ export default function Footer() {
             &copy; {year} Ismail Al-Hersh Contracting Company. All rights reserved.
           </p>
 
-           <p className="footer__copyright">
+           <p className="footer__copyright1">
             Powered by Tenma
           </p>
 
