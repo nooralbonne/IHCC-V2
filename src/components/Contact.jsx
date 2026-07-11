@@ -104,7 +104,18 @@ export default function Contact() {
     setSubmitMessage("");
 
     try {
-      await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+      const formData = new FormData(formRef.current);
+      const templateParams = {
+        from_name: formData.get("from_name")?.toString() || "",
+        from_email: formData.get("from_email")?.toString() || "",
+        phone: formData.get("phone")?.toString() || "",
+        message: formData.get("message")?.toString() || "",
+        to_email: "noorbonne8@gmail.com",
+        to_name: "Noor",
+        reply_to: formData.get("from_email")?.toString() || "",
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
       setSubmitStatus("success");
       setSubmitMessage("Your message was sent successfully. We will get back to you shortly.");
       formRef.current?.reset();
